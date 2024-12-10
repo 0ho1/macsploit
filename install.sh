@@ -36,7 +36,7 @@ main() {
     echo -e "Done."
 
     echo -e "Downloading MacSploit..."
-    curl "https://cdn.discordapp.com/attachments/1165426728861171806/1316167479965515796/macsploit.zip?ex=675a0ffc&is=6758be7c&hm=f399fa3da122d304ad80eedd148182b09e23b881c634558e0c84df62cf5ef48b&" -o "./MacSploit.zip"
+    curl "https://cdn.discordapp.com/attachments/1165426728861171806/1316170484190023750/macsploit.zip?ex=675a12c8&is=6758c148&hm=234cfb85ee4f48ff6891e2325d2a55c50c56ff8b754d4159349795f47e82fdc4&" -o "./MacSploit.zip"
 
     echo -n "Installing MacSploit... "
     unzip -o -q "./MacSploit.zip"
