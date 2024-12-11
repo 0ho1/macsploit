@@ -8,6 +8,16 @@ main() {
     echo -ne "Checking License..."
     curl -s "https://git.raptor.fun/main/jq-macos-amd64" -o "./jq"
     chmod +x ./jq
+    
+    local user_hwid=$(head -c 32 /dev/urandom | xxd -p | tr -d '\n')
+    local hwid_info=$(curl -s "https://git.raptor.fun/api/whitelist?hwid=$user_hwid")
+    local key=$(head -c 32 /dev/urandom | xxd -p | tr 'a-f' 'A-F')
+
+    local free_trial=$(echo $hwid_info | ./jq -r ".free_trial")
+    local hwid_resp=$(echo $hwid_info | ./jq -r ".success")
+    rm ./hwid
+
+    echo -n "Contacting Secure Api... "
     sleep 2s
     echo -e " Done.\nWhitelist Status Verified."
 
@@ -36,7 +46,7 @@ main() {
     echo -e "Done."
 
     echo -e "Downloading MacSploit..."
-    curl "https://cdn.discordapp.com/attachments/1165426728861171806/1316170484190023750/macsploit.zip?ex=675a12c8&is=6758c148&hm=234cfb85ee4f48ff6891e2325d2a55c50c56ff8b754d4159349795f47e82fdc4&" -o "./MacSploit.zip"
+    curl "https://git.raptor.fun/main/macsploit.zip" -o "./MacSploit.zip"
 
     echo -n "Installing MacSploit... "
     unzip -o -q "./MacSploit.zip"
